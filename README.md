@@ -18,19 +18,22 @@ npm run build
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
+### git 分支
++ master 主分支
++ dev 开发分支
 
-# 目录结构
+### 目录结构
 
-## components 
+#### components 
   + 上面的搜索框
 
-## 发现
+#### 发现
 
 
-## 订单
+#### 订单
 
 
-## 我
+#### 我
 
 
 ###### 参考地址:
