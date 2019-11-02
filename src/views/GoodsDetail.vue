@@ -33,7 +33,12 @@
         <div class="detail" ref="detail"></div>
         <!-- 立即购买 -->
         <van-button block color="#F5053D" @click="clickBuyAction">立即购买</van-button>
-        
+        <!-- 购买的选项 -->
+        <keep-alive>
+          <transition enter-active-class="slideInDown" leave-active-class="slideOutDown">
+            <BuyChoose v-if="isBuy" :info="{id: goodID, imgUrl:data.picUrl1, title: goodDetail.name, price: goodDetail.retailPrice, skuSpecList: goodDetail.skuSpecList}" @close="closeAction" ref="buy"/>
+          </transition>
+        </keep-alive>
       </div>
     </div>
   </div>
@@ -43,18 +48,21 @@
 const axios = require("axios");
 
 import Header from "../components/Header";
+import BuyChoose from "../components/BuyChoose";
+
 export default {
   name: "",
-  props: {
-    id: String
-  },
+  props: {},
   components: {
-    Header
+    Header,
+    BuyChoose
   },
   data() {
     return {
       goodDetail: {},
-      data: {}
+      data: {},
+      isBuy: false,
+      goodID: this.$route.params.id
     };
   },
   methods: {
@@ -76,7 +84,12 @@ export default {
     },
     // 点击立即购买
     clickBuyAction() {
-
+      this.isBuy = true;
+      // console.log('点击了立即购买');
+    },
+    closeAction() {
+      this.isBuy = false;
+      // console.log('点击了关闭');
     }
   },
   created() {
@@ -161,6 +174,10 @@ export default {
     position: fixed;
     left: 0;
     bottom: 0;
+    z-index: 10;
+  }
+  .isBuy {
+    display: block;
   }
 
 }

@@ -28,7 +28,7 @@ export default {
   },
   methods: {
     clickAction(id) {
-      this.$router.push(`/discover/id/${id}`);
+      this.$router.push(`/discover/detail/id/${id}`);
     }
   }
 };

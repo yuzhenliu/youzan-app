@@ -14,8 +14,12 @@ const routes = [
     component: () => import(/* webpackChunkName: "discover" */ '../views/Discover.vue')
   },
   {
-    path: '/discover/id/:id',
-    component: () => import(/*webpackChunkName: "id" */'../views/GoodsDetail.vue')
+    path: '/discover/detail/id/:id',
+    component: () => import(/*webpackChunkName: "detail" */'../views/GoodsDetail.vue')
+  },
+  {
+    path: '/discover/submitOrder/id/:id',
+    component: () => import(/*webpackChunkName: "submitOrder" */'../views/SubmitOrder.vue')
   },
   {
     path: '/order',
@@ -29,10 +33,6 @@ const routes = [
     path: '/login',
     component: () => import(/* webpackChunkName: "login" */ '../views/Login.vue')
   },
-  {
-    path: '/register',
-    component: () => import(/* webpackChunkName: "register" */ '../views/Register.vue')
-  }
 ]
 
 const router = new VueRouter({
