@@ -22,6 +22,14 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 + master 主分支
 + dev 开发分支
 
+### 项目所用插件 
++ UI框架 vant https://youzan.github.io/vant/?source=vuejsorg#/zh-CN/quickstart
++ 轮播图 swiper  https://github.com/surmon-china/vue-awesome-swiper
++ 滚动视图 scroll https://www.npmjs.com/package/iscroll
++ 请求数据: axios https://www.npmjs.com/package/axios
++ 登录 / 注册: express
+
+
 ### 目录结构
 
 #### components 
@@ -34,6 +42,9 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 
 #### 我
+
+
+#### 登录 / 注册
 
 
 ###### 参考地址:
