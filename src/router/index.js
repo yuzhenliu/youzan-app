@@ -35,6 +35,18 @@ const routes = [
     component: () => import(/* webpackChunkName: "mine" */ '../views/Mine.vue')
   },
   {
+    path: '/mine/addrManage',
+    component: () => import(/* webpackChunkName: "addrManage" */ '../views/AddrManage.vue')
+  },
+  {
+    path: '/mine/contact',
+    component: () => import(/* webpackChunkName: "contact" */ '../views/Contact.vue')
+  },
+  {
+    path: '/mine/helpCenter',
+    component: () => import(/* webpackChunkName: "helpCenter" */ '../views/HelpCenter.vue')
+  },
+  {
     path: '/login',
     component: () => import(/* webpackChunkName: "login" */ '../views/Login.vue')
   },
