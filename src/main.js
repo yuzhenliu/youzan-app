@@ -5,8 +5,8 @@ import store from './store'
 // import Iscroll from 'iscroll/build/iscroll-probe'
 
 // vant 组件
-import { Tabbar, TabbarItem, Icon, NavBar, Swipe, SwipeItem, Button, Tab, Tabs, Stepper, Cell, CellGroup, Field, SwitchCell, SubmitBar } from 'vant'
-Vue.use(Tabbar).use(TabbarItem).use(Icon).use(NavBar).use(Swipe).use(SwipeItem).use(Button ).use(Tab).use(Tabs).use(Stepper).use(Cell).use(CellGroup).use(Field).use(SwitchCell).use(SubmitBar)
+import { Tabbar, TabbarItem, Icon, NavBar, Swipe, SwipeItem, Button, Tab, Tabs, Stepper, Cell, CellGroup, Field, SwitchCell, SubmitBar, AddressEdit } from 'vant'
+Vue.use(Tabbar).use(TabbarItem).use(Icon).use(NavBar).use(Swipe).use(SwipeItem).use(Button ).use(Tab).use(Tabs).use(Stepper).use(Cell).use(CellGroup).use(Field).use(SwitchCell).use(SubmitBar).use(AddressEdit)
 // Vue.use(Iscroll)
 
 // Vue.config.productionTip = false

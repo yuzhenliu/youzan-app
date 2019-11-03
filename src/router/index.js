@@ -22,6 +22,11 @@ const routes = [
     component: () => import(/*webpackChunkName: "submitOrder" */'../views/SubmitOrder.vue')
   },
   {
+    path: '/discover/addaddr',
+    name: 'addaddr',
+    component: () => import(/* webpackChunkName: "addaddr" */ '../views/AddAddr.vue')
+  },
+  {
     path: '/order',
     component: () => import(/* webpackChunkName: "order" */ '../views/Order.vue')
   },

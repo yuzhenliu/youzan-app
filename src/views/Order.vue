@@ -26,4 +26,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+#order {
+  background-color: #eee;
+}
 </style>

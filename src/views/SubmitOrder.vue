@@ -42,7 +42,12 @@
             <van-cell title="合计" :value="sum"/>
           </van-cell-group>
           <!-- 短信通知 -->
-          <van-switch-cell v-model="checked" title="标题" />
+          <van-switch-cell v-model="checked" title="短信通知收件人" />
+          <!-- 商品金额 -->
+          <div class="priceWrap">
+            <p><span>商品金融</span><span>￥{{sum}}</span></p>
+            <p><span>运费</span><span>￥{{fare}}</span></p>
+          </div>
           <!-- 提交订单 -->
           <van-submit-bar :price="sum" button-text="提交订单" @submit="submitAction" />
         </div>
@@ -66,16 +71,58 @@ export default {
       message: "", // 买家留言
       checked: true, // 是否开启短信通知
       sum: 0,  // 总价
+      fare: 0.00, // 运费
     };
   },
   methods: {
     // 添加收货地址
     addAction() {
       // 跳转到新增收货地址
-      this.$route.push();
+      this.$router.push(`/discover/addaddr`);
     },
     // 提交订单
-    submitAction() {}
+    submitAction() {
+      // 获取到当前商品的信息，存入缓存中
+      let goodObj = {
+        id: this.id,
+        goodInfo: this.goodInfo,
+        message: this.message,
+        checked: this.checked,
+        sum: this.sum,
+        fare:  this.fare,
+      }
+      // orderList: [] 全部
+      // toPayList: [] 未付款
+      // 判断缓存中有没有订单列表，有的话就取出来，把这个对象存进去 
+      // 如果缓存中没有订单列表的话，就创建一个数组，以数组对象的形式存储
+      if(localStorage.getItem('orderList')) {
+        // 说明有
+        let orderList = JSON.parse(localStorage.getItem('orderList'));
+        orderList.push(goodObj);
+        localStorage.setItem('orderList', JSON.stringify(orderList));
+
+      }else {
+        // 说明没有
+        let orderList = [];
+        orderList.push(goodObj);
+        localStorage.setItem('orderList', JSON.stringify(orderList));
+      }
+      // 未付款列表
+      if(localStorage.getItem('toPayList')) {
+        // 说明有
+        let orderList = JSON.parse(localStorage.getItem('toPayList'));
+        orderList.push(goodObj);
+        localStorage.setItem('toPayList', JSON.stringify(orderList));
+
+      }else {
+        // 说明没有
+        let orderList = [];
+        orderList.push(goodObj);
+        localStorage.setItem('toPayList', JSON.stringify(orderList));
+      }
+      // 跳转到 order 页面
+      this.$router.push(`/order`);
+    }
   },
   created() {
     this.sum = this.goodInfo.price * this.goodInfo.goodNum;
@@ -171,6 +218,36 @@ export default {
   // 短信通知
   .van-switch-cell {
     margin: 10px 0;
+  }
+  // 商品金额
+  .priceWrap {
+    height: 70px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+    background-color: #fff;
+
+    p {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      
+      &:nth-of-type(2) {
+        margin-top: 4px;
+      }
+
+      span {
+        flex: 1;
+        text-align: right;
+        font-size: 14px;
+        color: #555;
+
+        &:nth-of-type(1) {
+          text-align: left;
+        }
+      }
+    }
   }
   // 提交订单
   .van-submit-bar__bar {

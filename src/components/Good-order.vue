@@ -3,8 +3,8 @@
     <!-- 头部 -->
     <div class="header">
       <div class="left">
-        <h6>店铺: lagln</h6>
-        <p>订单编号: leli</p>
+        <h6>店铺: 墨小刀</h6>
+        <p>订单编号: {{goodInfo.id + goodInfo.goodInfo.valueId}}</p>
       </div>
       <div class="right">
         <p>等待买家付款</p>
@@ -13,26 +13,27 @@
     <!-- 内容 -->
     <div class="content">
       <div class="left">
-        <img src="../assets/logo.png" />
+        <img :src="goodInfo.goodInfo.imgUrl" />
       </div>
       <div class="center">
-        <h6>右击刷个</h6>
-        <p>79g,gore</p>
+        <h6>{{goodInfo.goodInfo.title}}</h6>
+        <!-- 本来应该是描述信息，没保存 -->
+        <p>{{goodInfo.goodInfo.title}}</p>
       </div>
       <div class="right">
-        <p class="price">￥234</p>
-        <p class="num">x 2</p>
+        <p class="price">￥{{goodInfo.sum}}</p>
+        <p class="num">x {{goodInfo.goodInfo.goodNum}}</p>
       </div>
     </div>
     <!-- 总计 -->
     <p class="allPrice">
       合计:
-      <span class="price">￥233.00</span>
+      <span class="price">￥{{goodInfo.sum}}</span>
     </p>
     <!-- 付款 -->
     <p class="priceBtn">
       <van-button plain>取消</van-button>
-      <van-button color="#F5053D">付款</van-button>
+      <van-button color="#F5053D" @click="clickAction">{{todo}}</van-button>
     </p>
   </div>
 </template>
@@ -40,10 +41,64 @@
 <script>
 export default {
   name: "goodOrder",
+  props: {
+    goodInfo: Object,
+    todo: String,
+    index: Number
+  },
   data() {
     return {};
   },
-  methods: {}
+  methods: {
+    // 需要根据用户点击的时候的值来判断
+    clickAction() {
+      switch (this.todo) {
+        case "未付款": // 点击的是全部里面的，没有任何动作
+          console.log("你点击了未付款");
+          break;
+        case "去付款": // 点击的是全部里面的，没有任何动作
+          console.log("你点击了去付款");
+          this.payAction();
+          break;
+        case "催发货": // 点击的是全部里面的，没有任何动作
+          console.log("已催促买家发货");
+          break;
+        case "确认收货": // 点击的是全部里面的，没有任何动作
+          console.log("确认收货");
+          break;
+      }
+    },
+
+    // 当点击付款的时候，弹出确认框
+    // 点击确定时，从缓存中获得未付款列表，如果有就存入，如果没有就创建一个数组，存入
+    // 未付款列表
+    // 付款
+    payAction() {
+      if (confirm("确认付款")) {
+        // true
+
+        if (localStorage.getItem("toShippedList")) {
+          // 说明有
+          let orderList = JSON.parse(localStorage.getItem("toShippedList"));
+          orderList.push(this.goodInfo);
+          localStorage.setItem("toShippedList", JSON.stringify(orderList));
+        } else {
+          // 说明没有
+          let orderList = [];
+          orderList.push(this.goodInfo);
+          localStorage.setItem("toShippedList", JSON.stringify(orderList));
+        }
+
+        // 要从未付款中删除这条数据
+        let arr = JSON.parse(localStorage.getItem('toPayList'));
+        arr.splice(this.index, 1);
+        localStorage.setItem('toPayList', JSON.stringify(arr))
+      } else {
+        // false
+        // 没有任何动作
+      }
+    }
+  }
 };
 </script>
 
@@ -78,6 +133,10 @@ export default {
         font-size: 12px;
         color: #555;
         margin-top: 6px;
+        width: 100%;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
       }
     }
     .right {
