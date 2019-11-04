@@ -21,6 +21,14 @@ export default {
   },
   data() {
     return {};
+  },
+  beforeRouteEnter(to, from, next) {
+    // 组件内守卫
+    next(vm => {
+      if (!vm.$store.state.isLogin) {
+        vm.$router.push(`/login`);
+      }
+    });
   }
 };
 </script>

@@ -34,17 +34,19 @@ export default {
   },
   methods: {
     async requestData() {
-      try {
-        const response = await axios.get("/api/home/catelist/itemlist", {
+      // try {
+        const response = await axios.get(`/api/home/catelist/itemlist`, {
           params: {
             id: 1043000
           },
-          baseURL: "http://www.littleemmayang.com:8000"
+          baseURL: `http://www.littleemmayang.com:8000`
         });
         this.data = response.data.data;
-      } catch (error) {
-        console.error(error);
-      }
+      // } catch (error) {
+        // console.error(error);
+      // }
+
+      
     }
   },
   created() {

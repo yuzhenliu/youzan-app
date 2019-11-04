@@ -4,7 +4,6 @@
     <div id="wrapper" ref="wrapper">
       <div class="contentWrap">
 
-        <!-- 地址列表本来应该是动态渲染的，但是因为网慢，暂时是假数据 -->
         <van-address-list
           v-model="chosenAddressId"
           :list="list"
@@ -29,7 +28,6 @@ export default {
   },
   data() {
     return {
-      // 原本就有的假数据
 
       chosenAddressId: "1",
       list: [

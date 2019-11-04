@@ -28,7 +28,12 @@ const routes = [
   },
   {
     path: '/order',
-    component: () => import(/* webpackChunkName: "order" */ '../views/Order.vue')
+    component: () => import(/* webpackChunkName: "order" */ '../views/Order.vue'),
+    // beforeEnter: (to, from, next) => {
+    //   // 路由独享守卫
+    //   // 判断用户是否登录了，如果没有登录就跳转到登录页面
+    //   // 这里没有 this 不能够拦截
+    // }
   },
   {
     path: '/mine',

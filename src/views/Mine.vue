@@ -18,9 +18,9 @@
           <van-cell title="我的收货地址" is-link to="/mine/addrManage" />
         </van-cell-group>
         <!-- 联系客服 -->
-        <van-cell title="联系客服" is-link to="/mine/contact" id="contact"/>
+        <van-cell title="联系客服" is-link to="/mine/contact" id="contact" />
         <!-- 帮助中心 -->
-        <van-cell title="帮助中心" is-link to="/mine/helpCenter" id="helpCenter"/>
+        <van-cell title="帮助中心" is-link to="/mine/helpCenter" id="helpCenter" />
       </div>
     </div>
   </div>
@@ -36,6 +36,14 @@ export default {
   },
   data() {
     return {};
+  },
+  beforeRouteEnter(to, from, next) {
+    // 组件内守卫
+    next((vm) => {
+      if (!vm.$store.state.isLogin) {
+        vm.$router.push(`/login`);
+      }
+    });
   }
 };
 </script>

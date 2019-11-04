@@ -5,8 +5,16 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    isLogin: false,
   },
   mutations: {
+    // 登录
+    login(state) {
+      state.isLogin = true;
+    },
+    exit(state) {
+      state.isLogin = false;
+    }
   },
   actions: {
   },

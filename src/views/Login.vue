@@ -6,8 +6,8 @@
         <div class="center">
           <span>有赞APP</span>
         </div>
-        <van-button icon="phone-o" hairline color="#DD1A21" class="btn">手机号快捷登录</van-button>
-        <van-button icon="comment-o" hairline color="#DD1A21" plain class="btn">邮箱账号登录</van-button>
+        <van-button icon="phone-o" hairline color="#DD1A21" class="btn" @click="clickLogin">手机号快捷登录</van-button>
+        <van-button icon="comment-o" hairline color="#DD1A21" plain class="btn" @click="clickLogin">邮箱账号登录</van-button>
         <p class="links">
           <a href="javascript:;">
             <van-icon name="chat" color="7F7F7F" class="icon"/>
@@ -37,7 +37,14 @@ export default {
   },
   data() {
     return {};
-  }
+  },
+  methods: {
+    // 点击一下就登录
+    clickLogin() {
+      this.$store.commit('login');
+      this.$router.back();
+    }
+  },
 };
 </script>
 

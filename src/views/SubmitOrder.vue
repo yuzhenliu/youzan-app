@@ -49,7 +49,7 @@
             <p><span>运费</span><span>￥{{fare}}</span></p>
           </div>
           <!-- 提交订单 -->
-          <van-submit-bar :price="sum" button-text="提交订单" @submit="submitAction" />
+          <van-submit-bar :price="(sum * 100)" button-text="提交订单" @submit="submitAction" />
         </div>
       </div>
     </div>
